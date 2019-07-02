@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop Smartsoft</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+<div>
+    <nav class="top-menu">
+        <ul class="menu-main">
+            <li id="user"><a href="/login">Войти</a></li>
+            <li><p><a href="/">Главная</a></p></li>
+        </ul>
+    </nav>
+</div>
+<form method="post" action="/login" role="form">
+    <div class="container-fluid">
+        <div class="col-md-3">
+            <input type="text" class="form-control" id="username"
+                   name="username" placeholder="Логин" width="90%" autocomplete="off" required>
+        </div>
+        <div class="col-md-3">
+            <input type="password" class="form-control" id="password"
+                   name="password" placeholder="Пароль" width="90%" autocomplete="off" required>
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-primary" type="submit">Войти</button>
+            <a class="btn btn-link" href="/registration">Регистрация</a>
+        </div>
+    </div>
+</form>
+</body>
+</html>

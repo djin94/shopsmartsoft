@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "users")
+@Table(name = "Users")
 public class User {
 
     @Id
@@ -46,8 +46,11 @@ public class User {
     @JacksonXmlProperty(isAttribute = true)
     private Integer age;
 
+    @Column
+    private String role;
+
     @JsonManagedReference(value="user")
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JacksonXmlElementWrapper(useWrapping = false)
     private List<Order> orders = new ArrayList<>();
 
@@ -107,6 +110,14 @@ public class User {
         this.orders = orders;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -116,12 +127,14 @@ public class User {
                 Objects.equals(password, user.password) &&
                 Objects.equals(name, user.name) &&
                 Objects.equals(lastName, user.lastName) &&
-                Objects.equals(age, user.age);
+                Objects.equals(age, user.age) &&
+                Objects.equals(role, user.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(login, password, name, lastName, age);
+
+        return Objects.hash(login, password, name, lastName, age, role);
     }
 
     @Override
@@ -133,6 +146,7 @@ public class User {
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

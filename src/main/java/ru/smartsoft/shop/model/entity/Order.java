@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "buy_items")
+@Table(name = "Orders")
 public class Order {
 
     @Id
@@ -42,7 +42,7 @@ public class Order {
     private User user;
 
     @JsonManagedReference(value="order")
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JacksonXmlProperty(isAttribute = true)
     @JacksonXmlElementWrapper(useWrapping = false)
     private List<BuyItem> buyItems = new ArrayList<>();

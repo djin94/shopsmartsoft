@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
-@Table(name = "buy_items")
+@Table(name = "Buy_items")
 public class BuyItem {
 
     @Id

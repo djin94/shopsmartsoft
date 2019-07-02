@@ -1,20 +1,12 @@
-CREATE TABLE "Roles" (
-  "id" serial,
-  "name"    VARCHAR(50),
-  CONSTRAINT "Role_pk" PRIMARY KEY ("id")
-);
-
-
-
-
 CREATE TABLE "Users" (
 	"id" serial NOT NULL,
 	"name" varchar(255) NOT NULL,
 	"lastname" varchar(255) NOT NULL,
 	"age" integer NOT NULL,
-	"login" varchar(255) NOT NULL,
+	"login" varchar(255) NOT NULL UNIQUE ,
 	"password" varchar(255) NOT NULL,
-	"role_id" integer NOT NULL,
+	"role" varchar(255) NOT NULL,
+	"enabled" BOOLEAN DEFAULT TRUE,
 	CONSTRAINT "Users_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -61,8 +53,6 @@ ALTER TABLE "Orders" ADD CONSTRAINT "Orders_fk0" FOREIGN KEY ("user_id") REFEREN
 
 ALTER TABLE "Buy_items" ADD CONSTRAINT "Buy_items_fk0" FOREIGN KEY ("item_id") REFERENCES "Items"("id");
 ALTER TABLE "Buy_items" ADD CONSTRAINT "Buy_items_fk1" FOREIGN KEY ("order_id") REFERENCES "Orders"("id");
-
-ALTER TABLE "Users" ADD CONSTRAINT "Users_fk0" FOREIGN KEY ("role_id") REFERENCES "Roles"("id");
 
 GRANT ALL ON ALL TABLES IN SCHEMA public TO evgenyk;
 GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO evgenyk;
