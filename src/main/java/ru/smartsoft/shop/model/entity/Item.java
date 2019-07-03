@@ -16,19 +16,15 @@ public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JacksonXmlProperty(isAttribute = true)
     private Long id;
 
     @Column
-    @JacksonXmlProperty(isAttribute = true)
     private String name;
 
     @Column
-    @JacksonXmlProperty(isAttribute = true)
     private Integer price;
 
     @Column
-    @JacksonXmlProperty(isAttribute = true)
     private Integer count;
 
     public Long getId() {

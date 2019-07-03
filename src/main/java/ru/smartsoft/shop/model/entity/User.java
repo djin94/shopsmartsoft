@@ -7,7 +7,6 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,35 +22,28 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JacksonXmlProperty(isAttribute = true)
     private Long id;
 
     @Column
-    @JacksonXmlProperty(isAttribute = true)
     private String login;
 
     @Column
-    @JacksonXmlProperty(isAttribute = true)
     private String password;
 
     @Column
-    @JacksonXmlProperty(isAttribute = true)
     private String name;
 
     @Column(name = "lastname")
-    @JacksonXmlProperty(isAttribute = true)
     private String lastName;
 
     @Column
-    @JacksonXmlProperty(isAttribute = true)
     private Integer age;
 
     @Column
     private String role;
 
-    @JsonManagedReference(value="user")
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JacksonXmlElementWrapper(useWrapping = false)
+    @JsonManagedReference(value = "user")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "user")
     private List<Order> orders = new ArrayList<>();
 
     public Long getId() {

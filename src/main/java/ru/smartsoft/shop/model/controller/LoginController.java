@@ -17,7 +17,7 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value = "/login")
+    @GetMapping(value = {"", "/login"})
     public ModelAndView showLoginPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");

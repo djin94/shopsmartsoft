@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop Smartsoft</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="list-group">
+        <a href="/admin/orders-last-week" class='list-group-item list-group-item-action'>Вывести список покупок за последнюю неделю</a>
+    </div>
+    <div class="list-group">
+        <a href="/admin/most-sold-item" class='list-group-item list-group-item-action'>Вывести самый покупаемый товар за последний месяц</a>
+    </div>
+    <div class="list-group">
+        <a href="/admin/most-buying-person-last-half-year" class='list-group-item list-group-item-action'>Вывести имя и фамилию человека, совершившего больше всего покупок за полгода
+        </a>
+    </div>
+    <div class="list-group">
+        <a href="/admin/most-sold-item-by-18-year-person" class='list-group-item list-group-item-action'>Что чаще всего покупают люди в возрасте 18 лет</a>
+    </div>
+</div>
+</body>
+</html>

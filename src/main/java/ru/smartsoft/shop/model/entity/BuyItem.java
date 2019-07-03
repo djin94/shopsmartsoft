@@ -20,21 +20,17 @@ public class BuyItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JacksonXmlProperty(isAttribute = true)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "item_id", foreignKey = @ForeignKey(name = "Buy_items_fk0"))
-    @JacksonXmlProperty(isAttribute = true)
+    @JoinColumn(name = "item_id")
     private Item item;
 
     @JsonBackReference(value="order")
     @ManyToOne
-    @JoinColumn(name = "order_id", foreignKey = @ForeignKey(name = "Buy_items_fk1"))
     private Order order;
 
     @Column
-    @JacksonXmlProperty(isAttribute = true)
     private Integer count;
 
     public Long getId() {

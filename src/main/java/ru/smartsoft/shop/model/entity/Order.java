@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -28,23 +29,18 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JacksonXmlProperty(isAttribute = true)
     private Long id;
 
     @Column(name = "purchase_date")
-    @JacksonXmlProperty(isAttribute = true)
     private Timestamp purchaseDate;
 
     @JsonBackReference(value = "user")
     @ManyToOne
-    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "Orders_fk0"))
-    @JacksonXmlProperty(isAttribute = true)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @JsonManagedReference(value="order")
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JacksonXmlProperty(isAttribute = true)
-    @JacksonXmlElementWrapper(useWrapping = false)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "order")
     private List<BuyItem> buyItems = new ArrayList<>();
 
     public Long getId() {
