@@ -44,4 +44,14 @@ public class AdminController {
         modelAndView.addObject("buyItems", buyItems);
         return modelAndView;
     }
+
+    @GetMapping(value = "/most-sold-item")
+    public ModelAndView getMostSoldItem() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("admin/most-sold-item");
+        List<BuyItemDto> buyItems = orderService.getOrdersForLastWeek().stream()
+                .collect(ArrayList::new, (buyItemDtos, order) -> buyItemDtos.addAll(buyItemDtoConverter.convertToBuyItemDtos(order.getBuyItems())), ArrayList::addAll);
+        modelAndView.addObject("buyItem", buyItems);
+        return modelAndView;
+    }
 }

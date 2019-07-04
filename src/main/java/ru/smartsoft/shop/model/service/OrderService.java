@@ -18,4 +18,6 @@ public interface OrderService {
     void delete(Order order);
 
     List<Order> getOrdersForLastWeek();
+
+    List<Order> getOrdersForLastMonth();
 }

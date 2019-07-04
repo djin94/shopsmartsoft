@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Shop Smartsoft</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+<h2>Самый покупаемый товар за месяц</h2>
+<ul>
+    <li th:value="'Id - '+ ${buyItem.getId()}"></li>
+    <li th:value="'Item - ' + ${buyItem.getItem().getName()}"></li>
+    <li th:value="'Count - ' + ${buyItem.getCount()}"></li>
+</ul>
+</body>
+</html>

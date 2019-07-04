@@ -11,7 +11,6 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,6 +47,16 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> getOrdersForLastWeek() {
+        LocalTime midnight = LocalTime.MIDNIGHT;
+        LocalDate today = LocalDate.now();
+        LocalDateTime todayMidnight = LocalDateTime.of(today, midnight);
+        Timestamp endDate = Timestamp.valueOf(todayMidnight);
+        Timestamp startDate = Timestamp.valueOf(todayMidnight.minusDays(7));
+        return orderRepository.findByPeriod(startDate, endDate);
+    }
+
+    @Override
+    public List<Order> getOrdersForLastMonth() {
         LocalTime midnight = LocalTime.MIDNIGHT;
         LocalDate today = LocalDate.now();
         LocalDateTime todayMidnight = LocalDateTime.of(today, midnight);

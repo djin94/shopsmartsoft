@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+>
 <head>
     <meta charset="UTF-8">
     <title>Shop Smartsoft</title>
@@ -11,13 +11,13 @@
 </head>
 <body>
 <div class="container">
-
+    <h2>Cписок покупок за последнюю неделю</h2>
     <table id="myTable" class="table table-bordered table-hover table-striped">
         <thead class="thead-dark">
         <tr>
             <th>ID</th>
             <th>Date</th>
-            <th>Name</th>
+            <th>Name of buyer</th>
             <th>Item</th>
             <th>Count</th>
             <th>Amount</th>
@@ -31,9 +31,9 @@
             <div class="form-group">
                 <td th:utext="${buyItem.getOrder().getPurchaseDate()}">...</td>
             </div>
-            <td th:utext="${buyItem.getOrder().getUser().getName()} + ' '+ ${buyItem.getOrder().getUser().getLastName()}">
-                ...
-            </td>
+            <div>
+                <td th:utext="${buyItem.getOrder().getUser().getName()} + ' '+ ${buyItem.getOrder().getUser().getLastName()}">...</td>
+            </div>
             <div class="form-group">
                 <td th:utext="${buyItem.getItem().getName()}">...</td>
             </div>
