@@ -46,11 +46,16 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<Order> getOrdersAfterDate(Timestamp date) {
+        return orderRepository.findByPurchaseDateAfter(date);
+    }
+
+    @Override
     public List<Order> getOrdersForLastWeek() {
         LocalTime midnight = LocalTime.MIDNIGHT;
         LocalDate today = LocalDate.now();
         LocalDateTime todayMidnight = LocalDateTime.of(today, midnight);
-        Timestamp endDate = Timestamp.valueOf(todayMidnight);
+        Timestamp endDate = Timestamp.valueOf(LocalDateTime.now());
         Timestamp startDate = Timestamp.valueOf(todayMidnight.minusDays(7));
         return orderRepository.findByPeriod(startDate, endDate);
     }
@@ -60,8 +65,13 @@ public class OrderServiceImpl implements OrderService {
         LocalTime midnight = LocalTime.MIDNIGHT;
         LocalDate today = LocalDate.now();
         LocalDateTime todayMidnight = LocalDateTime.of(today, midnight);
-        Timestamp endDate = Timestamp.valueOf(todayMidnight);
-        Timestamp startDate = Timestamp.valueOf(todayMidnight.minusDays(7));
+        Timestamp endDate = Timestamp.valueOf(LocalDateTime.now());
+        Timestamp startDate = Timestamp.valueOf(todayMidnight.minusMonths(1));
         return orderRepository.findByPeriod(startDate, endDate);
+    }
+
+    @Override
+    public List<Order> getOrdersByAgeOfPerson(int age) {
+        return orderRepository.findByUserAge(age);
     }
 }

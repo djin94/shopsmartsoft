@@ -9,7 +9,7 @@ public interface UserService {
 
     Optional<User> getByLogin();
 
-    Optional<User> getCurrentUser();
-
     Optional<User> getById(long id);
+
+    User getBestBuyingPersonForLastHalfYear();
 }

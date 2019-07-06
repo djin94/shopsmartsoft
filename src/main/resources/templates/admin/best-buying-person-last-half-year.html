@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop Smartsoft</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+<h2>Пользователь, совершивший больше всего покупок за полгода</h2>
+<ul>
+    <li th:utext="'First name - '+ ${user.getName()}"></li>
+    <li th:utext="'Last name - ' + ${user.getLastName()}"></li>
+</ul>
+</body>
+</html>

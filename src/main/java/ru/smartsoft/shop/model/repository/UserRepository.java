@@ -7,6 +7,6 @@ import ru.smartsoft.shop.model.entity.User;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User,Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findById(long id);
 }

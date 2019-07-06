@@ -18,9 +18,9 @@ INSERT INTO Items(name, price,count) values ('Bosch соковыжималка',
 INSERT INTO Items(name, price,count) values ('Sennheiser HD200 наушники', 200000, 15);
 INSERT INTO Items(name, price,count) values ('Genius клавиатура', 50000, 20);
 
-INSERT INTO Orders(purchase_date, user_id) values ('2019-06-27 18:52:01.689', 1);
-INSERT INTO Orders(purchase_date, user_id) values ('2019-06-28 17:52:01.689', 2);
-INSERT INTO Orders(purchase_date, user_id) values ('2019-06-29 16:52:01.689', 3);
+INSERT INTO Orders(purchase_date, user_id) values ('2019-07-04 18:52:01.689', 1);
+INSERT INTO Orders(purchase_date, user_id) values ('2019-07-05 17:52:01.689', 2);
+INSERT INTO Orders(purchase_date, user_id) values ('2019-07-06 16:52:01.689', 3);
 
 INSERT INTO Buy_items(item_id, order_id, count) values (1,1,1);
 INSERT INTO Buy_items(item_id, order_id, count) values (2,2,1);

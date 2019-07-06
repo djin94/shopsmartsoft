@@ -14,7 +14,7 @@ public class BuyItemDtoConverterImpl implements BuyItemDtoConverter {
         buyItemDto.setId(buyItem.getId());
         buyItemDto.setCount(buyItem.getCount());
         buyItemDto.setItem(buyItem.getItem());
-        buyItemDto.setOrder(new OrderDtoConverterImpl().convertToDto(buyItem.getOrder()));
+        buyItemDto.setOrder(buyItem.getOrder() != null ? new OrderDtoConverterImpl().convertToDto(buyItem.getOrder()) : null);
         buyItemDto.setAmount((double) buyItem.getItem().getPrice() * buyItem.getCount() / 100);
         return buyItemDto;
     }

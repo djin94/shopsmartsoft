@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Shop Smartsoft</title>
@@ -12,9 +11,9 @@
 <body>
 <h2>Самый покупаемый товар за месяц</h2>
 <ul>
-    <li th:value="'Id - '+ ${buyItem.getId()}"></li>
-    <li th:value="'Item - ' + ${buyItem.getItem().getName()}"></li>
-    <li th:value="'Count - ' + ${buyItem.getCount()}"></li>
+    <li th:utext="'Id - '+ ${buyItem.getId()}"></li>
+    <li th:utext="'Item - ' + ${buyItem.getItem().getName()}"></li>
+    <li th:utext="'Count - ' + ${buyItem.getCount()}"></li>
 </ul>
 </body>
 </html>

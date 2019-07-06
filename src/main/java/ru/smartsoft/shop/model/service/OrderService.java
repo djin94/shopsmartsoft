@@ -3,6 +3,7 @@ package ru.smartsoft.shop.model.service;
 import ru.smartsoft.shop.model.entity.Order;
 import ru.smartsoft.shop.model.entity.User;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,7 +18,11 @@ public interface OrderService {
 
     void delete(Order order);
 
+    List<Order> getOrdersAfterDate(Timestamp date);
+
     List<Order> getOrdersForLastWeek();
 
     List<Order> getOrdersForLastMonth();
+
+    List<Order> getOrdersByAgeOfPerson(int age);
 }
