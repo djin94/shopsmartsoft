@@ -63,7 +63,7 @@ public class AdminController {
     public ModelAndView getBestBuyingPersonForLastHalfYear() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("admin/best-buying-person-last-half-year");
-        modelAndView.addObject("user", userService.getBestBuyingPersonForLastHalfYear());
+        modelAndView.addObject("user", userService.getBestBuyingPersonForLastHalfYear().get());
         return modelAndView;
     }
 

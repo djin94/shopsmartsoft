@@ -1,0 +1,26 @@
+<Order>
+  <id>1</id>
+  <purchaseDate>2019-07-04T15:52:01.689+0000</purchaseDate>
+  <user>
+    <id>1</id>
+    <login></login>
+    <password></password>
+    <name></name>
+    <lastName></lastName>
+    <age>0</age>
+    <role></role>
+  </user>
+  <amount></amount>
+  <BuyItems>
+    <BuyItem>
+      <id>0</id>
+      <item>
+        <id>0</id>
+        <name></name>
+        <price>0</price>
+        <count>0</count>
+      </item>
+      <count>0</count>
+    </BuyItem>
+  </BuyItems>
+</Order>
