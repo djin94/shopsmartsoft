@@ -17,11 +17,11 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value = {"", "/login"})
-    public ModelAndView showLoginPage() {
+    @GetMapping(value = "/login")
+    public String showLoginPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
-        return modelAndView;
+        return "/login";
     }
 
     @GetMapping(value = "/registration")
@@ -34,5 +34,10 @@ public class LoginController {
                                       @ModelAttribute("user") @Valid User user) {
         userService.create(user);
         return modelAndView;
+    }
+
+    @GetMapping(value = "/403")
+    public String showAccessDenied(){
+        return "Access denied";
     }
 }

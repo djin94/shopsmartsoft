@@ -16,9 +16,6 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     List<Order> findByPurchaseDateAfter(Timestamp date);
 
-    @Query("select o from Order o where o.purchaseDate BETWEEN :startDate and :endDate")
-    List<Order> findByPeriod(@Param("startDate") Timestamp startDate, @Param("endDate") Timestamp endDate);
-
     @Query("select o from Order o where o.user.age = :age")
     List<Order> findByUserAge(@Param("age") int age);
 }

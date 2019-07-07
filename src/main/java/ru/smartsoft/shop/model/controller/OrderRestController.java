@@ -3,9 +3,11 @@ package ru.smartsoft.shop.model.controller;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,5 +44,23 @@ public class OrderRestController {
     public List<OrderDto> getOrdersByUserId(@PathVariable("id") long userId) {
         return orderDtoConverter.convertToDtos(orderService.getByUser(userService.getById(userId)
                 .orElseThrow(() -> new EntityNotFoundException(String.format("User with id = %d not found", userId)))));
+    }
+
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_XML_VALUE)
+    @ApiOperation("Find order by id")
+    public OrderDto getOrderById(@PathVariable("id") long id) {
+        return orderDtoConverter.convertToDto(orderService.getById(id).orElseThrow(() -> new EntityNotFoundException(String.format("Order with id = %d not found", id))));
+    }
+
+    @PutMapping(produces = MediaType.APPLICATION_XML_VALUE)
+    @ApiOperation("Update order")
+    public OrderDto updateOrder(@RequestBody Order order) {
+        return orderDtoConverter.convertToDto(orderService.update(order).orElseThrow(() -> new EntityNotFoundException(String.format("Order with id = %d not found", order.getId()))));
+    }
+
+    @DeleteMapping
+    @ApiOperation("Delete order")
+    public void deleteOrderById(@PathVariable("id") long id) {
+        orderService.deleteById(id);
     }
 }

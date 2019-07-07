@@ -8,13 +8,11 @@ import ru.smartsoft.shop.model.repository.UserRepository;
 import ru.smartsoft.shop.model.service.OrderService;
 import ru.smartsoft.shop.model.service.UserService;
 
-import javax.persistence.EntityNotFoundException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -30,12 +28,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<User> create(User user) {
-        return null;
+        return Optional.of(userRepository.save(user));
     }
 
     @Override
-    public Optional<User> getByLogin() {
-        return null;
+    public Optional<User> getByLogin(String login) {
+        return userRepository.findByLogin(login);
     }
 
     @Override
@@ -44,16 +42,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getBestBuyingPersonForLastHalfYear() {
+    public Optional<User> getBestBuyingPersonForLastHalfYear() {
         LocalTime midnight = LocalTime.MIDNIGHT;
         LocalDate today = LocalDate.now();
         LocalDateTime todayMidnight = LocalDateTime.of(today, midnight);
         Timestamp purchaseDate = Timestamp.valueOf(todayMidnight.minusMonths(6));
         List<Order> orders = orderService.getOrdersAfterDate(purchaseDate);
         Map<User, Long> countOrdersForUser = orders.stream().collect(Collectors.groupingBy(Order::getUser, Collectors.counting()));
-
-        return countOrdersForUser.entrySet().stream()
-                .max(Comparator.comparing(userLongEntry -> userLongEntry.getValue()))
-                .orElseThrow(() -> new EntityNotFoundException("No one user buy for last half year")).getKey();
+        if (countOrdersForUser.isEmpty())
+            return Optional.empty();
+        else
+            return Optional.of(countOrdersForUser.entrySet().stream()
+                    .max(Comparator.comparing(userLongEntry -> userLongEntry.getValue())).get().getKey());
     }
 }

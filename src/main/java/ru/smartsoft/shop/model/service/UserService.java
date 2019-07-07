@@ -7,9 +7,9 @@ import java.util.Optional;
 public interface UserService {
     Optional<User> create(User user);
 
-    Optional<User> getByLogin();
+    Optional<User> getByLogin(String login);
 
     Optional<User> getById(long id);
 
-    User getBestBuyingPersonForLastHalfYear();
+    Optional<User> getBestBuyingPersonForLastHalfYear();
 }

@@ -22,17 +22,17 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Optional<Order> create(Order order) {
-        return Optional.empty();
+        return Optional.of(orderRepository.save(order));
     }
 
     @Override
     public Optional<Order> update(Order order) {
-        return Optional.empty();
+        return Optional.of(orderRepository.save(order));
     }
 
     @Override
-    public Optional<Order> getById(Order order) {
-        return Optional.empty();
+    public Optional<Order> getById(long id) {
+        return orderRepository.findById(id);
     }
 
     @Override
@@ -41,8 +41,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void delete(Order order) {
-
+    public void deleteById(long id) {
+        orderRepository.deleteById(id);
     }
 
     @Override
@@ -55,9 +55,8 @@ public class OrderServiceImpl implements OrderService {
         LocalTime midnight = LocalTime.MIDNIGHT;
         LocalDate today = LocalDate.now();
         LocalDateTime todayMidnight = LocalDateTime.of(today, midnight);
-        Timestamp endDate = Timestamp.valueOf(LocalDateTime.now());
         Timestamp startDate = Timestamp.valueOf(todayMidnight.minusDays(7));
-        return orderRepository.findByPeriod(startDate, endDate);
+        return orderRepository.findByPurchaseDateAfter(startDate);
     }
 
     @Override
@@ -65,9 +64,8 @@ public class OrderServiceImpl implements OrderService {
         LocalTime midnight = LocalTime.MIDNIGHT;
         LocalDate today = LocalDate.now();
         LocalDateTime todayMidnight = LocalDateTime.of(today, midnight);
-        Timestamp endDate = Timestamp.valueOf(LocalDateTime.now());
         Timestamp startDate = Timestamp.valueOf(todayMidnight.minusMonths(1));
-        return orderRepository.findByPeriod(startDate, endDate);
+        return orderRepository.findByPurchaseDateAfter(startDate);
     }
 
     @Override

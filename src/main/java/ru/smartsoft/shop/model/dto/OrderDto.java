@@ -1,11 +1,15 @@
 package ru.smartsoft.shop.model.dto;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import ru.smartsoft.shop.model.entity.BuyItem;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+@JacksonXmlRootElement(localName = "Order")
 public class OrderDto {
 
     private Long id;
@@ -16,6 +20,8 @@ public class OrderDto {
 
     private double amount;
 
+    @JacksonXmlElementWrapper(localName = "BuyItems")
+    @JacksonXmlProperty(localName = "BuyItem")
     private List<BuyItem> buyItems = new ArrayList<>();
 
     public Long getId() {

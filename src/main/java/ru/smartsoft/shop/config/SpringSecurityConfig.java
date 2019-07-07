@@ -6,11 +6,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import ru.smartsoft.shop.model.utils.SuccessHandler;
 
 import javax.sql.DataSource;
@@ -49,48 +47,41 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/**").permitAll()
                 .antMatchers("/registration").permitAll()
-                .antMatchers("/tickets").permitAll()
-                .antMatchers("/flights").permitAll()
                 .antMatchers("/login").permitAll()
-                .antMatchers("/swagger-ui.html").permitAll()
+                .antMatchers("/resources/**",
+                        "/css",
+                        "/static/**",
+                        "/v2/api-docs",
+                        "/configuration/ui",
+                        "/swagger-resources",
+                        "/swagger-resources/**",
+                        "/configuration/security",
+                        "/swagger-ui.html",
+                        "/webjars/**").permitAll()
                 .antMatchers("/orders").permitAll()
                 .antMatchers("/orders/**").permitAll()
-                .antMatchers("/api/**").permitAll()
                 .antMatchers("/resources/**").permitAll()
                 .antMatchers("/css/**").permitAll()
-                .antMatchers("/js/**").permitAll()
-                .antMatchers("/images/**").permitAll()
                 .antMatchers("/admin/**").hasAuthority("admin").anyRequest().authenticated()
                 .antMatchers("/admin").hasAuthority("admin").anyRequest().authenticated()
                 .antMatchers("/user/**").hasAuthority("user").anyRequest().authenticated()
                 .antMatchers("/user").hasAuthority("user").anyRequest().authenticated()
                 .and().csrf().disable()
                 .formLogin()
-                .loginPage("/login").permitAll()
+                .loginPage("/login")
                 .loginProcessingUrl("/login")
                 .successHandler(successHandler)
-                .failureUrl("/")
+                .failureUrl("/login")
                 .usernameParameter("username")
                 .passwordParameter("password")
-                .and().logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .and().logout().permitAll()
                 .and().exceptionHandling()
                 .accessDeniedPage("/403");
     }
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web
-                .ignoring()
-                .antMatchers("/resources/**", "/css", "/js", "/static/**");
-    }
-
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        return bCryptPasswordEncoder;
+        return new BCryptPasswordEncoder();
     }
 }

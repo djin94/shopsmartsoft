@@ -1,8 +1,6 @@
 package ru.smartsoft.shop.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

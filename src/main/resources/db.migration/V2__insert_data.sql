@@ -1,15 +1,15 @@
 INSERT INTO Users(name, lastname, login, password, role, age)
- values('Evgeny', 'Kabatov', 'kabatov.en@yandex.ru', '$2a$10$7OAbCHEehzR7.lU0oA7aL.bU43CBRpsPuJBekUOP9kmO1PzOZb/.O',
+ values('Evgeny', 'Kabatov', 'kabatov.en@yandex.ru', '$2a$10$S.DezBO9k9MeS7b.LLRcKOjab868Dz6MZ.Kyp5xwMdsBvFBWKAgUe',
   'user', 25);
 
 INSERT INTO Users(name, lastname, login, password, role, age)
- values('Sergey', 'Antonov', 'anton.s@yandex.ru', '$2a$10$7OAbCHEehzR7.lU0oA7aL.bU43CBRpsPuJBekUOP9kmO1PzOZb/.O',
+ values('Sergey', 'Antonov', 'anton.s@yandex.ru', '$2a$10$S.DezBO9k9MeS7b.LLRcKOjab868Dz6MZ.Kyp5xwMdsBvFBWKAgUe',
   'user', 27);
 INSERT INTO Users(name, lastname, login, password, role, age)
- values('Kirill', 'Alekseev', 'aleks@yandex.ru', '$2a$10$7OAbCHEehzR7.lU0oA7aL.bU43CBRpsPuJBekUOP9kmO1PzOZb/.O',
+ values('Kirill', 'Alekseev', 'aleks@yandex.ru', '$2a$10$S.DezBO9k9MeS7b.LLRcKOjab868Dz6MZ.Kyp5xwMdsBvFBWKAgUe',
   'user', 18);
 INSERT INTO users(name, lastname, login, password, role, age)
-  values ('Admin', 'Admin', 'Admin', '$2a$10$7OAbCHEehzR7.lU0oA7aL.bU43CBRpsPuJBekUOP9kmO1PzOZb/.O', 'admin', 26);
+  values ('Admin', 'Admin', 'admin', '$2a$10$S.DezBO9k9MeS7b.LLRcKOjab868Dz6MZ.Kyp5xwMdsBvFBWKAgUe', 'admin', 26);
 
 
 INSERT INTO Items(name, price,count) values ('LG телевизор', 3000000, 5);

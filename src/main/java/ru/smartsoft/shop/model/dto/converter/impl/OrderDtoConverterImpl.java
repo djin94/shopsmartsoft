@@ -16,8 +16,8 @@ public class OrderDtoConverterImpl implements OrderDtoConverter {
         orderDto.setUser(new UserDtoConverterImpl().convertToUserDto(order.getUser()));
         orderDto.setPurchaseDate(order.getPurchaseDate());
         orderDto.setAmount((double) order.getBuyItems().stream()
-                .mapToInt(buyItem -> buyItem.getCount()*buyItem.getItem().getPrice())
-                .summaryStatistics().getSum()/100);
+                .mapToInt(buyItem -> buyItem.getCount() * buyItem.getItem().getPrice())
+                .summaryStatistics().getSum() / 100);
         return orderDto;
     }
 

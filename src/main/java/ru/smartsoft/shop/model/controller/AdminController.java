@@ -36,10 +36,10 @@ public class AdminController {
     private OrderDtoConverter orderDtoConverter = new OrderDtoConverterImpl();
 
     @GetMapping
-    public ModelAndView getHomePage() {
+    public String getHomePage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("admin/index");
-        return modelAndView;
+        return "/admin/index";
     }
 
     @GetMapping(value = "/buying-items-last-week")

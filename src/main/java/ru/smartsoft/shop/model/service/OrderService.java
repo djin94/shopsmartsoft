@@ -12,11 +12,11 @@ public interface OrderService {
 
     Optional<Order> update(Order order);
 
-    Optional<Order> getById(Order order);
+    Optional<Order> getById(long id);
 
     List<Order> getByUser(User user);
 
-    void delete(Order order);
+    void deleteById(long id);
 
     List<Order> getOrdersAfterDate(Timestamp date);
 

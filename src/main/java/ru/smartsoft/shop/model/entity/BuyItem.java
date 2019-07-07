@@ -1,11 +1,10 @@
 package ru.smartsoft.shop.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +15,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "Buy_items")
+@JacksonXmlRootElement(localName = "BuyItem")
 public class BuyItem {
 
     @Id
@@ -26,7 +26,7 @@ public class BuyItem {
     @JoinColumn(name = "item_id")
     private Item item;
 
-    @JsonBackReference(value="order")
+    @JsonBackReference(value = "order")
     @ManyToOne
     private Order order;
 
@@ -70,13 +70,13 @@ public class BuyItem {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BuyItem buyItem = (BuyItem) o;
-        return item.equals(buyItem.item) &&
-                order.equals(buyItem.order);
+        return Objects.equals(id, buyItem.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(item, order);
+
+        return Objects.hash(id);
     }
 
     @Override

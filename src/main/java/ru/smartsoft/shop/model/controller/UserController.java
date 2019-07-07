@@ -16,7 +16,6 @@ public class UserController {
     public ModelAndView showMainPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("user/index");
-        modelAndView.setViewName("redirect:/login");
         return modelAndView;
     }
 }
