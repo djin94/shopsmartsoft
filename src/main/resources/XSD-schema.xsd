@@ -1,0 +1,54 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Order">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="xs:byte" name="id"/>
+                <xs:element type="xs:string" name="purchaseDate"/>
+                <xs:element name="user">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:byte" name="id"/>
+                            <xs:element type="xs:string" name="login"/>
+                            <xs:element type="xs:string" name="password"/>
+                            <xs:element type="xs:string" name="name"/>
+                            <xs:element type="xs:string" name="lastName"/>
+                            <xs:element type="xs:byte" name="age"/>
+                            <xs:element name="role">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:enumeration value="user"/>
+                                    <xs:enumeration value="admin"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="BuyItems">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="BuyItem">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:byte" name="id"/>
+                                        <xs:element name="item">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element type="xs:byte" name="id"/>
+                                                    <xs:element type="xs:string" name="name"/>
+                                                    <xs:element type="xs:byte" name="price"/>
+                                                    <xs:element type="xs:byte" name="count"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element type="xs:byte" name="count"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
