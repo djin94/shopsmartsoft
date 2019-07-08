@@ -10,7 +10,6 @@
     <age>0</age>
     <role></role>
   </user>
-  <amount></amount>
   <BuyItems>
     <BuyItem>
       <id>0</id>

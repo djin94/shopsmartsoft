@@ -11,6 +11,7 @@ import ru.smartsoft.shop.model.entity.Item;
 import ru.smartsoft.shop.model.entity.Order;
 import ru.smartsoft.shop.model.entity.User;
 import ru.smartsoft.shop.model.repository.OrderRepository;
+import ru.smartsoft.shop.model.service.ItemService;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -31,6 +32,9 @@ public class OrderServiceImplTest {
     @Mock
     private OrderRepository orderRepository;
 
+    @Mock
+    private ItemService itemService;
+
     @InjectMocks
     private OrderServiceImpl orderService;
 
@@ -40,6 +44,8 @@ public class OrderServiceImplTest {
 
     private User user;
 
+    private Item item;
+
     private Timestamp date;
 
     @Before
@@ -47,12 +53,14 @@ public class OrderServiceImplTest {
         user = new User();
         user.setId(1L);
 
-        Item item = new Item();
+        item = new Item();
         item.setId(1L);
+        item.setCount(20);
 
         BuyItem buyItem = new BuyItem();
         buyItem.setId(1L);
         buyItem.setItem(item);
+        buyItem.setCount(5);
 
         date = Timestamp.valueOf("2019-07-04 18:52:01.689");
 
@@ -67,6 +75,8 @@ public class OrderServiceImplTest {
     @Test
     public void whenCreateOrder_thenReturnOrder() {
         when(orderRepository.save(order)).thenReturn(order);
+        when(itemService.getById(item.getId())).thenReturn(Optional.of(item));
+        when(itemService.update(item)).thenReturn(item);
         Optional<Order> expectedOrder = Optional.of(order);
 
         Optional<Order> actualOrder = orderService.create(order);
@@ -78,6 +88,10 @@ public class OrderServiceImplTest {
     @Test
     public void whenUpdateOrder_thenReturnOrder() {
         when(orderRepository.save(order)).thenReturn(order);
+        when(orderRepository.findById(order.getId())).thenReturn(Optional.of(order));
+        when(itemService.getById(item.getId())).thenReturn(Optional.of(item));
+        when(itemService.update(item)).thenReturn(item);
+        doNothing().when(orderRepository).deleteById(order.getId());
         Optional<Order> expectedOrder = Optional.of(order);
 
         Optional<Order> actualOrder = orderService.update(order);
@@ -109,6 +123,7 @@ public class OrderServiceImplTest {
     @Test
     public void whenDeleteOrderById_thenDeleteOrder() {
         doNothing().when(orderRepository).deleteById(order.getId());
+        when(orderRepository.findById(order.getId())).thenReturn(Optional.of(order));
 
         orderService.deleteById(order.getId());
 

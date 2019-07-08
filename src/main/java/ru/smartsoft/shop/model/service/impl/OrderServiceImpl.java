@@ -2,9 +2,12 @@ package ru.smartsoft.shop.model.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.smartsoft.shop.model.entity.Item;
 import ru.smartsoft.shop.model.entity.Order;
 import ru.smartsoft.shop.model.entity.User;
+import ru.smartsoft.shop.model.repository.ItemRepository;
 import ru.smartsoft.shop.model.repository.OrderRepository;
+import ru.smartsoft.shop.model.service.ItemService;
 import ru.smartsoft.shop.model.service.OrderService;
 
 import java.sql.Timestamp;
@@ -20,14 +23,23 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private ItemService itemService;
+
     @Override
     public Optional<Order> create(Order order) {
+        order.getBuyItems().forEach(buyItem -> {
+            Item item = itemService.getById(buyItem.getItem().getId()).get();
+            item.setCount(item.getCount() - buyItem.getCount());
+            buyItem.setItem(itemService.update(item));
+        });
         return Optional.of(orderRepository.save(order));
     }
 
     @Override
     public Optional<Order> update(Order order) {
-        return Optional.of(orderRepository.save(order));
+        deleteById(order.getId());
+        return create(order);
     }
 
     @Override
@@ -42,6 +54,13 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void deleteById(long id) {
+        Optional<Order> order = orderRepository.findById(id);
+        if (order.isPresent()) {
+            order.get().getBuyItems().forEach(buyItem -> {
+                Item item = buyItem.getItem();
+                item.setCount(item.getCount() + buyItem.getCount());
+            });
+        }
         orderRepository.deleteById(id);
     }
 
