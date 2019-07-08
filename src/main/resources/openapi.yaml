@@ -353,7 +353,7 @@ paths:
       requestBody:
         description: order
         content:
-          application/json:
+          application/xml:
             schema:
               $ref: '#/components/schemas/Order'
         required: true
@@ -385,7 +385,7 @@ paths:
       requestBody:
         description: order
         content:
-          application/json:
+          application/xml:
             schema:
               $ref: '#/components/schemas/Order'
         required: true
